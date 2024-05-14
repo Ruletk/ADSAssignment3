@@ -34,6 +34,9 @@ public class MyHashTable<K, V> {
         chainArray = createArray(DEFAULT_SIZE);
     }
 
+    /**
+     * @param size Size of the
+     */
     public MyHashTable(int size) {
         if (size <= 0)
             throw new IllegalArgumentException("Size must be positive value!");
@@ -250,6 +253,6 @@ public class MyHashTable<K, V> {
      */
     private int getIndex(K key) {
         int hash = hash(key);
-        return hash % chainArray.length;
+        return Math.abs(hash) % chainArray.length;
     }
 }
