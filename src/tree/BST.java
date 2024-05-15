@@ -2,22 +2,52 @@ package tree;
 
 import java.util.*;
 
+/**
+ * This class is simple realization of Binary Search Tree.
+ * Every node in BST have two children, left and right.
+ * BST have addition, deletion and getting operations that running
+ * in O(log(n)) time complexity.
+ *
+ * @param <K> Type of key element, that supporting Comparable interface.
+ * @param <V> Type of value elements.
+ */
 public class BST<K extends Comparable<K>, V> implements Iterable<BST<K, V>.Node> {
+    /**
+     * Node class that containing key, value and left and right children.
+     * Node class using as nodes in tree.
+     */
     public class Node {
 
         K key;
         V val;
         Node left, right;
 
+        /**
+         * Creation node with key and value parameters.
+         * Left and right children adding separately
+         *
+         * @param key Key element of the node.
+         * @param val Value element of the node.
+         */
         public Node(K key, V val) {
             this.key = key;
             this.val = val;
         }
 
+        /**
+         * Getter for key element.
+         *
+         * @return Key element.
+         */
         public K getKey() {
             return key;
         }
 
+        /**
+         * Getter for value element.
+         *
+         * @return Value element.
+         */
         public V getVal() {
             return val;
         }
@@ -32,10 +62,24 @@ public class BST<K extends Comparable<K>, V> implements Iterable<BST<K, V>.Node>
     private Node root;
     private int size = 0;
 
+    /**
+     * Putting key and value inside the tree.
+     * Calling private method, that changing references between nodes inside.
+     * Root element will be edited.
+     *
+     * @param key Key that should be added to the tree.
+     * @param value Value that would be mapped with key.
+     */
     public void put(K key, V value) {
         root = put(root, key, value);
     }
 
+    /**
+     * Returning mapped with key value.
+     *
+     * @param key Key element.
+     * @return Value element that mapped with key or null if key not found.
+     */
     public V get(K key) {
         return get(root, key);
     }
