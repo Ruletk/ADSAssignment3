@@ -1,5 +1,14 @@
 package hashtable;
 
+/**
+ * Class that represents simple realization of hashtable that can contain key-value pairs.
+ *
+ * <p>This class realizing hashtable using array and linked nodes for resolving collisions.
+ * This class supports addition, edition, deletion keys and getting by key and value.</p>
+ *
+ * @param <K> Type of key, that will be using in hashtable
+ * @param <V> Type of values, that will be associated with keys in hashtable
+ */
 public class MyHashTable<K, V> {
     /**
      * HashNode class for the MyHashTable class
@@ -13,6 +22,12 @@ public class MyHashTable<K, V> {
         V value;
         HashNode<K, V> next;
 
+        /**
+         * Create node with key and value
+         *
+         * @param key   Key of the node
+         * @param value Value of the node
+         */
         HashNode(K key, V value) {
             this.key = key;
             this.value = value;
@@ -26,16 +41,32 @@ public class MyHashTable<K, V> {
         }
     }
 
+    /**
+     * Array that contains nodes.
+     */
     private HashNode<K, V>[] chainArray;
+
+    /**
+     * Default size of array, size.
+     */
     private static final int DEFAULT_SIZE = 11;
+
+    /**
+     * Current load of hashtable. Count of nodes in array.
+     */
     private int size;
 
+    /**
+     * Default constructor that creating array with default size.
+     */
     public MyHashTable() {
         chainArray = createArray(DEFAULT_SIZE);
     }
 
     /**
-     * @param size Size of the
+     * Constructor with manual setting the size of the array.
+     *
+     * @param size Base size of the array
      */
     public MyHashTable(int size) {
         if (size <= 0)
@@ -79,7 +110,7 @@ public class MyHashTable<K, V> {
             node = node.next;
         }
         if (node == null)
-            throw new NullPointerException("Node element cannot be null");
+            throw new NullPointerException("Something went wrong. Node element cannot be null.");
         node.next = newNode;
         size++;
     }
